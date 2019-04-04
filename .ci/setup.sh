@@ -3,7 +3,6 @@
 if [[ $OS_NAME == "macos" ]]; then
     if  [[ $COMPILER == "clang" ]]; then
         brew install libomp
-        brew upgrade cmake  # CMake >=3.12 is needed to find OpenMP at macOS
         if [[ $AZURE == "true" ]]; then
             sudo xcode-select -s /Applications/Xcode_8.3.3.app/Contents/Developer
         fi
@@ -15,6 +14,7 @@ if [[ $OS_NAME == "macos" ]]; then
         fi
         if [[ $TASK != "mpi" ]]; then
             brew install gcc
+            brew upgrade gcc
         fi
     fi
     if [[ $TASK == "mpi" ]]; then
@@ -31,9 +31,9 @@ else  # Linux
         sudo apt-get install --no-install-recommends -y libopenmpi-dev openmpi-bin
     fi
     if [[ $TASK == "gpu" ]]; then
-        sudo add-apt-repository ppa:kzemek/boost -y
+        sudo add-apt-repository ppa:mhier/libboost-latest -y
         sudo apt-get update
-        sudo apt-get install --no-install-recommends -y libboost1.58-dev libboost-system1.58-dev libboost-filesystem1.58-dev ocl-icd-opencl-dev
+        sudo apt-get install --no-install-recommends -y libboost1.68-dev libboost-system1.68-dev libboost-filesystem1.68-dev ocl-icd-opencl-dev
         cd $BUILD_SOURCESDIRECTORY
         mkdir -p $AMDAPPSDK_PATH
         mkdir -p $OPENCL_VENDOR_PATH
