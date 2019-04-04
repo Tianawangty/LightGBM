@@ -40,19 +40,19 @@ else  # Linux
         sudo apt-get install --no-install-recommends -y libboost1.58-dev libboost-system1.58-dev libboost-filesystem1.58-dev ocl-icd-opencl-dev
         cd $HOME_DIRECTORY
         wget -q https://github.com/Microsoft/LightGBM/releases/download/v2.0.12/AMD-APP-SDKInstaller-v3.0.130.136-GA-linux64.tar.bz2
-        tar -xjf AMD-APP-SDK*.tar.bz2
-        mkdir -p $OPENCL_VENDOR_PATH
-        mkdir -p $AMDAPPSDK_PATH
-        sh AMD-APP-SDK*.sh --tar -xf -C $AMDAPPSDK_PATH
-        mv $AMDAPPSDK_PATH/lib/x86_64/sdk/* $AMDAPPSDK_PATH/lib/x86_64/
-        echo libamdocl64.so > $OPENCL_VENDOR_PATH/amdocl64.icd
+        sudo tar -xjf AMD-APP-SDK*.tar.bz2
+        sudo mkdir -p $OPENCL_VENDOR_PATH
+        sudo mkdir -p $AMDAPPSDK_PATH
+        sudo sh AMD-APP-SDK*.sh --tar -xf -C $AMDAPPSDK_PATH
+        sudo mv $AMDAPPSDK_PATH/lib/x86_64/sdk/* $AMDAPPSDK_PATH/lib/x86_64/
+        sudo echo libamdocl64.so > $OPENCL_VENDOR_PATH/amdocl64.icd
     fi
-    if [[ $TRAVIS == "true" ]] || [[ $TASK == "gpu" ]]; then
+    if [[ $TRAVIS == "true" ]]; then
         wget -q -O conda.sh https://repo.continuum.io/miniconda/Miniconda${PYTHON_VERSION:0:1}-latest-Linux-x86_64.sh
     fi
 fi
 
-if [[ $TRAVIS == "true" ]] || [[ $OS_NAME == "macos" ]] || [[ $TASK == "gpu" ]]; then
+if [[ $TRAVIS == "true" ]] || [[ $OS_NAME == "macos" ]]; then
     sh conda.sh -b -p $CONDA
 fi
 conda config --set always_yes yes --set changeps1 no
