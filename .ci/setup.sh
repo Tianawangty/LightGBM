@@ -36,13 +36,15 @@ else  # Linux
         sudo add-apt-repository ppa:kzemek/boost -y
         sudo apt-get update
         sudo apt-get install --no-install-recommends -y libboost1.58-dev libboost-system1.58-dev libboost-filesystem1.58-dev ocl-icd-opencl-dev
-        cd /opt
+        cd $HOME_DIRECTORY
+        sudo mkdir -p $AMDAPPSDK_PATH
+        sudo chmod -R ugo+rw $AMDAPPSDK_PATH
+        mkdir -p $OPENCL_VENDOR_PATH
+        cd $AMDAPPSDK_PATH
         wget https://github.com/Microsoft/LightGBM/releases/download/v2.0.12/AMD-APP-SDKInstaller-v3.0.130.136-GA-linux64.tar.bz2
         echo "!!!ALARM"        
         ls
         tar -xjf AMD-APP-SDK*.tar.bz2
-        mkdir -p $OPENCL_VENDOR_PATH
-        mkdir -p $AMDAPPSDK_PATH
         sh AMD-APP-SDK*.sh --tar -xf -C $AMDAPPSDK_PATH
         mv $AMDAPPSDK_PATH/lib/x86_64/sdk/* $AMDAPPSDK_PATH/lib/x86_64/
         echo libamdocl64.so > $OPENCL_VENDOR_PATH/amdocl64.icd
