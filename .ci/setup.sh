@@ -23,10 +23,8 @@ if [[ $OS_NAME == "macos" ]]; then
     wget -q -O conda.sh https://repo.continuum.io/miniconda/Miniconda${PYTHON_VERSION:0:1}-latest-MacOSX-x86_64.sh
 else  # Linux
     if [[ $AZURE == "true" ]] && [[ $COMPILER == "clang" ]]; then
-        sudo apt-get update
         sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 100
         sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 100
-        sudo apt-get install --no-install-recommends -y libomp-dev
     fi
     if [[ $TASK == "mpi" ]]; then
         sudo apt-get update
