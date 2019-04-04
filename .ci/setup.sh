@@ -38,7 +38,7 @@ else  # Linux
         sudo apt-get install --no-install-recommends -y libboost1.58-dev libboost-system1.58-dev libboost-filesystem1.58-dev ocl-icd-opencl-dev
         cd $HOME_DIRECTORY
         sudo mkdir -p $AMDAPPSDK_PATH
-        sudo chmod -R ugo+rw $AMDAPPSDK_PATH
+        sudo chmod -R ugo+rwx $AMDAPPSDK_PATH
         mkdir -p $OPENCL_VENDOR_PATH
         cd $AMDAPPSDK_PATH
         wget https://github.com/Microsoft/LightGBM/releases/download/v2.0.12/AMD-APP-SDKInstaller-v3.0.130.136-GA-linux64.tar.bz2
