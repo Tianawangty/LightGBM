@@ -31,7 +31,7 @@ RUN add-apt-repository ppa:ubuntu-toolchain-r/test -y \
  && add-apt-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-7 main" -y \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
-    clang-7.0 \
+    clang-7 \
     libomp-7-dev \
  && rm -rf /var/lib/apt/lists/*
 
